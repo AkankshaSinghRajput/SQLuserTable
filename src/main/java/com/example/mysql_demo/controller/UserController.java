@@ -24,10 +24,10 @@ public class UserController {
 	int createUser(@RequestBody User user){
 		return userService.save(user);
 	}
-	@GetMapping("/user")
-	List<User> getBugs() {
-		return userService.getUser();
-	}
+//	@GetMapping("/user")
+//	List<User> getUser() {
+//		return userService.getUser();
+//	}
 	@GetMapping("/user/{id}")
 	Optional<User> getUserById(@PathVariable("id") int userId) {
 		return userService.getUserById(userId);
@@ -42,4 +42,9 @@ public class UserController {
 		System.out.println(userId);
 		userService.deleteOrder(userId);
 	}
+	@GetMapping("/user")
+	List<User> getAllUsers(){
+		return userService.getAllUsers();
+	}
+	
 }

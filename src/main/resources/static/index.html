@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+	//POST User Data------------------//
+	function sendData() {
+		function success(response){
+			console.log(response);
+			return response.jason();
+		}
+		fetch('/user', {
+			method:'POST',
+			headers: {
+			      'Content-Type': 'application/json'
+			    },
+			    body:JSON.stringify({
+			    	name: document.getElementById('username').value,
+			    	email: document.getElementById('email').value,
+			    	mobileNumber: document.getElementById('mobile').value
+			    })
+		});
+		promise.then(success);
+		promise.then(function(data){
+			console.log(data);
+		});
+		promise.catch(function(error){
+			console.log(error);
+		});
+		console.log('1');
+}
+	//Getting User Data------------------------------------//
+	function getUsers(){
+		const promise = fetch('/user');
+		promise.then(function(response){
+			return response.json();
+		})
+		.then(function(users){
+			console.log(users);
+	//Table------------------------------------------------//
+			const table = document.getElementById('users');
+			for(let index=0; index< users.length;index++){
+				console.log(users[index]);
+				const currentUser = users[index];
+				const row = document.createElement('tr');
+				const nameColumn = document.createElement('td');
+				const emailColumn = document.createElement('td');
+				const mobileColumn = document.createElement('td');
+				nameColumn.append(currentUser.name);
+				emailColumn.append(currentUser.email);
+				mobileColumn.append(currentUser.mobileNumber);
+				row.appendChild(nameColumn);
+				row.appendChild(emailColumn);
+				row.appendChild(mobileColumn);
+				table.appendChild(row);
+			}
+		})
+	}
+</script>
+</head>
+<body>
+	<form>
+		<input id='username' placeholder="Name" required><br>
+		<input id='email' placeholder="Email" required><br>
+		<input id='mobile' placeholder="Mobile Number" required><br>
+		<button onclick="sendData()">Save</button>
+	</form>
+	<br>
+		<input id='id' placeholder="Id"><br>
+		<button onclick="getUsers()">Get Users</button>
+	<table>
+	<td>Name</td>
+	<td>Email</td>
+	<td>MobileNumber</td>
+	
+	</thead>
+	<tbody id='users'></tbody>
+	</table>
+	
+
+</body>
+</html>

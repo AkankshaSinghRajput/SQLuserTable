@@ -16,4 +16,6 @@ public interface IUserService {
 
 	void deleteOrder(Integer userId);
 
+	List<User> getAllUsers();
+
 }
