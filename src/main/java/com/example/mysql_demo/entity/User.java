@@ -1,5 +1,7 @@
 package com.example.mysql_demo.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -22,7 +24,15 @@ public class User {
 	@Min(1000000000)
 	@Max(9999999999L)
 	private long mobileNumber;
+	private Date dob;
+	
+	public Date getDob() {
+		return dob;
+	}
 
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
 	public Integer getId() {
 		return id;
 	}
